@@ -1,24 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>
+        Гісторыя Беларусі
+      </h1>
+      <div>
+        <input className='start-button' type="button" value='START' />
+      </div>
+      <div className='test-wrapper'>
+          <h2>
+            <p>
+              Пытынне:
+            </p>
+             Якое небудзь пыттанне
+          </h2>
+          <div>
+            <input className='question-input' type="radio" id='q1' value ='yes'/>
+            <label htmlFor="q1"> нейкi адказ</label>
+          </div>
+          <div>
+            <input className='question-input' type="radio" id='q2' value ='yes'/>
+            <label htmlFor="q2"> нейкi адказ</label>
+          </div>
+          <div>
+            <input className='question-input' type="radio" id='q3' value ='yes'/>
+            <label htmlFor="q3"> нейкi адказ</label>
+          </div>
+          <input className='start-button' type="button" value='next question'/>
+      </div>
+      <div>
+        <h2 className='result-title'>
+          Правiльныя адказы
+        </h2>
+        <div className='result-count'>
+          0
+        </div>
+        <input className='start-button' type="button" value='restart'/>
+      </div>
     </div>
   );
 }
