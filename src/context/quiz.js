@@ -1,16 +1,28 @@
 import { createContext, useReducer } from 'react';
+import { data } from '../data';
 
 const InitialState = {
-    question: [],
-    currentQuestionIndex: 0
+    questions: data,
+    currentQuestionIndex: 0,
+    showResult: false
 }
-// export type InitialStateType = typeof InitialState
+
 
 const reducer = (state, action) => {
-    if(action.type === 'Next_Question')
-    return {
-        ...state,
-        currentQuestionIndex: state.currentQuestionIndex
+    if(action.type === 'Next_Question'){
+        const showResults = 
+            state.currentQuestionIndex === state.questions.length - 1;
+        const currentQuestion = showResults 
+                                ? state.currentQuestionIndex 
+                                : state.currentQuestionIndex + 1;
+        return {
+            ...state,
+            currentQuestionIndex: currentQuestion,
+            showResults
+        }
+    }
+    if (action.type = 'Restart'){
+        return InitialState
     }
 }
 
