@@ -1,16 +1,16 @@
-import { useReducer, useContext } from "react"
+
+import { useContext } from "react"
+import { QuizContext } from "../../context/quiz"
 import { Answer } from "../Answer/Answer"
 
-type questionPropsType = {
-    question: string[]
-}
 
-export const Question: React.FC<questionPropsType> = ({question}) => {
+export const Question = () => {
     const [quizState, dispatch] = useContext(QuizContext);
-    console.log(question)
+    const currentQuestion = quizState.questions[quizState.currentQuestionIndex];
+    console.log('Questions: ', quizState)
     return (
         <div>
-            <h2>Question???</h2>
+            <h2>{currentQuestion.question}</h2>
             <ul>
                 <li>
                     <Answer/>
