@@ -1,28 +1,56 @@
 import { createContext, useReducer } from 'react';
-import { data } from '../data';
+
+import { shuffleAnswers, normalizeQuestions } from '../helpers';
 
 const InitialState = {
-    questions: data,
+    questions: [],
     currentQuestionIndex: 0,
-    showResult: false
+    showResult: false,
+    answers: [],
+    currentAnswer: '',
+    correctAnswerCount: 0,
 }
 
 
 const reducer = (state, action) => {
-    if(action.type === 'Next_Question'){
-        const showResults = 
-            state.currentQuestionIndex === state.questions.length - 1;
-        const currentQuestion = showResults 
-                                ? state.currentQuestionIndex 
-                                : state.currentQuestionIndex + 1;
-        return {
-            ...state,
-            currentQuestionIndex: currentQuestion,
-            showResults
+    switch (action.type) {
+        case 'Select_Answer': {
+            const correctAnswerCount = 
+                action.payload === 
+                state.questions[state.currentQuestionIndex].correctAnswer
+                    ? state.correctAnswerCount + 1
+                    : state.correctAnswerCount;
+            return {...state, currentAnswer: action.payload, correctAnswerCount}
         }
-    }
-    if (action.type = 'Restart'){
-        return InitialState
+        case 'Next_Question': {
+            const showResults =
+                state.currentQuestionIndex === state.questions.length - 1;
+            const currentQuestionIndex = showResults ?
+                state.currentQuestionIndex :
+                state.currentQuestionIndex + 1;
+            const answers = showResults ? [] :
+                shuffleAnswers(state.questions[currentQuestionIndex])
+            return {
+                ...state,
+                currentQuestionIndex,
+                showResults,
+                answers,
+                currentAnswer:'',
+            }
+        }
+        case 'Restart': {
+            return InitialState
+        }
+        case 'Loaded_Questions': {
+            const normalizeQuestion = normalizeQuestions(action.payload);
+            console.log('Loaded_Questions: ', action.payload)
+            return {
+                ...state, questions: normalizeQuestion, answers: shuffleAnswers(normalizeQuestion[0])
+            }
+        }
+        default: {
+            return state;
+        }
     }
 }
 
