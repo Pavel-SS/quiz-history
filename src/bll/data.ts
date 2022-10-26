@@ -1,8 +1,8 @@
-export const qestionsData = [
+export const questions = [
     {
         question: "It's the first question?",
-        answerCorrect: "Yes, it's first qurstion",
-        answerOptions: [
+        correctAnswer: "Yes, it's first qurstion",
+        incorrectAnswers: [
             "Yes, it's second qurstion",
             "Yes, it's third qurstion",
             "Yes, it's fourth qurstion",
@@ -10,8 +10,8 @@ export const qestionsData = [
     },
     {
         question: "It's the second question?",
-        answerCorrect: "Yes, it's second qurstion",
-        answerOptions: [
+        correctAnswer: "Yes, it's second qurstion",
+        incorrectAnswers: [
             "Yes, it's first qurstion",
             "Yes, it's third qurstion",
             "Yes, it's fourth qurstion",
@@ -19,8 +19,8 @@ export const qestionsData = [
     },
     {
         question: "It's the third question?",
-        answerCorrect: "Yes, it's third qurstion",
-        answerOptions: [
+        correctAnswer: "Yes, it's third qurstion",
+        incorrectAnswers: [
             "Yes, it's first qurstion",
             "Yes, it's second qurstion",
             "Yes, it's fourth qurstion",
@@ -28,3 +28,4 @@ export const qestionsData = [
     },
 ];
 
+export type questionsType = typeof questions

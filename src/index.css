@@ -1,48 +1,24 @@
 body {
-  background-color: #e4e4e4;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-div {
-  box-sizing: border-box;
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 
-.quiz {
-  width: 975px;
-  margin: 0 auto;
-  margin-top: 100px;
+ul{
+  list-style-type: none;
 }
 
-.question {
-  background-color: #0094da;
-  color: white;
-  padding: 10px;
-  min-height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-}
-
-.results {
-  background-color: #fff;
-  height: 300px;
-  text-align: center;
-}
-
-.congratulations {
-  background-color: #0094da;
-  padding: 20px;
-  font-size: 36px;
-  color: #fff;
-}
-
-.results-info {
-  margin-top: 40px;
-  margin-bottom: 40px;
-  font-size: 18px;
-}
 
 .answer {
+  cursor: pointer;
   width: 48%;
   background: #fff;
   border: 2px solid #0094da;
@@ -59,7 +35,7 @@ div {
   margin-top: 50px;
 }
 
-.answer-letter {
+.answer_num {
   font-size: 30px;
   background-color: #0084da;
   color: #fff;
@@ -69,56 +45,29 @@ div {
   justify-content: center;
 }
 
-.answer-text {
+.answer_txt {
   font-weight: 600;
   display: flex;
   align-items: center;
   margin-left: 20px;
 }
 
-.correct-answer {
+.answer_correct {
   border: 2px solid #1ea55b;
 }
 
-.correct-answer .answer-letter {
+.answer_correct .answer_txt {
   background: #1ea55b;
 }
 
-.wrong-answer {
+.answer_wrong {
   border: 2px solid #dc0a0a;
 }
 
-.wrong-answer .answer-letter {
+.answer_wrong .answer_txt {
   background: #dc0a0a;
 }
 
-.next-button {
-  margin: 0 auto;
-  color: #fff;
-  background: #0b0e21;
-  width: 300px;
-  font-size: 18px;
-  font-weight: 600;
-  padding: 14px 75px;
-  text-transform: uppercase;
-  cursor: pointer;
-  text-align: center;
-}
-
-.score {
-  background: #fff;
-  color: 000;
-  font-size: 18px;
-  width: 200px;
-  margin: 0 auto;
-  font-weight: 600;
-  height: 40px;
-  margin-bottom: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.disabled-answer {
+.disabled_answer {
   pointer-events: none;
 }
