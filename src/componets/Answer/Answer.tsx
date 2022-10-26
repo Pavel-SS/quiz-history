@@ -1,8 +1,8 @@
 type AnswerPropsType = {
-    answerTxt:string
+    answerTxt:string | string[]
     index:number 
     answerCurrent?:string
-    answerCorrect?:string
+    answerCorrect?:string | string[]
     selectAnswer: any
 }
 

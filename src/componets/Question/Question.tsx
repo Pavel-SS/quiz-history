@@ -6,23 +6,22 @@ import { Answer } from "../Answer/Answer"
 export const Question = () => {
     const {state, dispatch} = useContext(QuizContext)
     const currentQuestion = state.questions[state.currentQuestionIndex];
-    // const answersList = [state.answers., ...state.answers.incorrectAnswers]
-
+    const answersList = [state.questions[state.currentQuestionIndex].correct_answer, ...state.questions[state.currentQuestionIndex].incorrect_answers]
+    console.log(answersList)
     return (
         <>
             <h2>{currentQuestion.question}</h2>
             <ul>
                 {
-                  state.answers.map((a,i)=> (
+                  answersList.map((a,i)=> (
                     <Answer 
                         key={i}
                         index={i}
                         answerTxt={a}
-                        answerCorrect={currentQuestion.correctAnswer}
+                        answerCorrect={currentQuestion.correct_answer}
                         answerCurrent={state.currentAnswer}
-                        selectAnswer={(answer:string)=>dispatch({type:'ASNWER_SELECT', payload: answer})}
+                        selectAnswer={(answer:string | string[])=>dispatch({type:'ASNWER_SELECT', payload: answer})}
                     />))
-
                 }
             </ul>
             <button onClick={()=>{}}>Click</button>

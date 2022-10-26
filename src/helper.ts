@@ -1,59 +1,32 @@
 // import { questionsType } from "./bll/data";
 
+import { questionsType } from "./bll/context";
+
 // export type questionsType = typeof questions
 
-export const randomAnswers = (questions: any) => {
+export const randomAnswers = (questions: questionsType) => {
     const  unshuffledAnswers = [
-      questions.correctAnswer,
-      ...questions.incorrectAnswers
+      questions.correct_answer,
+      ...questions.incorrect_answers
     ]
-    console.log()
+    console.log(questions.incorrect_answers)
     return unshuffledAnswers.map(unshuffle => ({
         sort: Math.random(),
         value: unshuffle
     })).sort((a,b)=> a.sort - b.sort).map(a => a.value);
 }
 
-export const normalizeQuestions = (backEndQuestions: any ) => {
-    // console.log(back)
-    return  backEndQuestions.map((question:any)=>{
-        const incorrectAnswers = question.incorrect_answer.map(
+export const normalizeQuestions = (backEndQuestions: questionsType[] ) => {
+    return  backEndQuestions.map((question)=>{
+        const incorrectAnswers = question.incorrect_answers.map(
             (answer:string) => decodeURIComponent(answer)
         )
+        console.log(incorrectAnswers)
         return {
-            correctAnswer:decodeURIComponent(backEndQuestions.correct_answer),
-            question: decodeURIComponent(backEndQuestions.question),
+            correctAnswer:decodeURIComponent(question.correct_answer),
+            questions: decodeURIComponent(question.question),
             incorrectAnswers
         }
     })
 }
 
-
-// import { questions, QuestionsType } from "./bll/data";
-// import { State } from "./bll/reducer"
-
-// export const randomAnswers = (data: QuestionsType) => {
-//     const correctAnswer = data.correct_answer,
-//           uncorrectAnswers = data.incorrect_answers;
-//     const listAnswers = [correctAnswer, ...uncorrectAnswers];
-//     return listAnswers.map(answer=> ({
-//         sort: Math.random(),
-//         value: answer
-//     })).sort((a,b)=> {
-//         return a.sort - b.sort}).map(answer=> answer.value)
-// }
-
-
-// export const normalizeQuestions = (backEndQuestions:QuestionsType[]) => {
-//     console.log(backEndQuestions)
-//     return backEndQuestions?.map(backQuestion => {
-//         const incorrectAnswers = backQuestion.incorrect_answers.map(answer=> decodeURIComponent(answer))
-//         return {
-//             answerCorrect: decodeURIComponent(backQuestion.correct_answer),
-//             question: decodeURIComponent(backQuestion.question),
-//             incorrectAnswers
-//         }
-//     })
-// }
-
-// normalizeQuestions(questions)

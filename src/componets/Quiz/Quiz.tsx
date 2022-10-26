@@ -12,6 +12,7 @@ function Quiz() {
       return;
     }
     fetch(apiUrl).then((res) => res.json()).then((data) => {
+      state.questions.push(data.results)
       dispatch({type: 'LOAD_QUESTIN', payload: data.results})
     })
   })
@@ -25,11 +26,10 @@ function Quiz() {
           <h3>Done</h3> 
           <h2>Result {state.correctAnswerCount}/{state.questions.length}</h2>
          </>}
-        {!state.showResult &&<>
+        {!state.showResult && state.questions.length > 0 && <>
           <h1>Historical Quiz</h1>
-          <h4>Count Question {state.currentQuestionIndex+1}/3</h4>
+          <h4>Count Question {state.currentQuestionIndex+1}/{state.questions.length}</h4>
           <Question/>
-          
         </>}
         <button onClick={()=>nextQuestionOrReset()}>Next</button>
     </div>

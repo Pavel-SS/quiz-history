@@ -12,7 +12,7 @@ export const reducer = (state: State, action: Action) => {
     switch (action.type) {
    
         case "ASNWER_SELECT":{
-            const correctAnswer = state.questions[state.currentQuestionIndex].correctAnswer;
+            const correctAnswer = state.questions[state.currentQuestionIndex].correct_answer;
             const countCorrectAnswers = state.correctAnswerCount
             const correctAnswerCount = 
                 action.payload === correctAnswer
@@ -40,7 +40,7 @@ export const reducer = (state: State, action: Action) => {
             const normalize = normalizeQuestions(action.payload);
             console.log(normalize)
             return {
-                ...state, questions:(action.payload), answers:randomAnswers(action.payload)
+                ...state, questions:(action.payload), answers:action.payload
             }
         }
         default:{

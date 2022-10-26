@@ -1,17 +1,22 @@
 
 import React, {createContext, useReducer} from "react";
 import { reducer } from "./reducer";
-import { questions } from "./data";
-import { randomAnswers } from "../helper";
-
 
 export const initialQuiz = {
-    questions,
+    questions: [] as questionsType[],
     currentQuestionIndex: 0,
     showResult: false,
-    answers: randomAnswers(questions[0]),
+    answers: [] as questionsType[],
     currentAnswer: '',
     correctAnswerCount: 0,
+}
+export type questionsType = {
+    category:string
+    type:string
+    difficulty:string
+    question:string 
+    correct_answer:string 
+    incorrect_answers:string[]
 }
 
 const initialValues = {
