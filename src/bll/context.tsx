@@ -11,9 +11,9 @@ export const initialQuiz = {
     correctAnswerCount: 0,
 }
 export type questionsType = {
-    category:string
-    type:string
-    difficulty:string
+    category?:string
+    type?:string
+    difficulty?:string
     question:string 
     correct_answer:string 
     incorrect_answers:string[]

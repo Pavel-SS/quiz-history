@@ -6,8 +6,9 @@ import { Answer } from "../Answer/Answer"
 export const Question = () => {
     const {state, dispatch} = useContext(QuizContext)
     const currentQuestion = state.questions[state.currentQuestionIndex];
-    const answersList = [state.questions[state.currentQuestionIndex].correct_answer, ...state.questions[state.currentQuestionIndex].incorrect_answers]
-    console.log(answersList)
+    const incorrectAnswers = currentQuestion.incorrect_answers
+    const answersList = [currentQuestion.correct_answer]
+
     return (
         <>
             <h2>{currentQuestion.question}</h2>
@@ -24,7 +25,6 @@ export const Question = () => {
                     />))
                 }
             </ul>
-            <button onClick={()=>{}}>Click</button>
         </>
     )
 }

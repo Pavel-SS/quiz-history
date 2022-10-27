@@ -10,7 +10,12 @@ type Action = {
 
 export const reducer = (state: State, action: Action) => {
     switch (action.type) {
-   
+        case "LOAD_QUESTIN": {
+            const normalize = normalizeQuestions(action.payload);
+            return {
+                ...state, questions:normalize, answers:(action.payload)
+            }
+        }
         case "ASNWER_SELECT":{
             const correctAnswer = state.questions[state.currentQuestionIndex].correct_answer;
             const countCorrectAnswers = state.correctAnswerCount
@@ -29,19 +34,16 @@ export const reducer = (state: State, action: Action) => {
             const currentQuestionIndex = 
                 showResult 
                 ? state.currentQuestionIndex  
-                : state.currentQuestionIndex+1;
-            const answers = showResult ? [] : randomAnswers(state.questions[currentQuestionIndex])
+                : state.currentQuestionIndex + 1;
+            const answers = showResult ? [] : state.questions[currentQuestionIndex]
+            console.log(state)
+            // console.log(...state.questions)
             return {...state, currentQuestionIndex, showResult, ...answers, currentAnswer:''}
         }
         case "RESET": {
+            console.log(state)
+            console.log(initialQuiz)
             return initialQuiz
-        }
-        case "LOAD_QUESTIN": {
-            const normalize = normalizeQuestions(action.payload);
-            console.log(normalize)
-            return {
-                ...state, questions:(action.payload), answers:action.payload
-            }
         }
         default:{
             return state

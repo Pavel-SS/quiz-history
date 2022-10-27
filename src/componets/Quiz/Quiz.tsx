@@ -8,16 +8,16 @@ function Quiz() {
   const apiUrl = "https://opentdb.com/api.php?amount=13&category=23&type=multiple&encode=url3986"
 
   useEffect(()=>{
-    if(state.questions.length > 0){
-      return;
-    }
+    // debugger
+ 
     fetch(apiUrl).then((res) => res.json()).then((data) => {
       state.questions.push(data.results)
       dispatch({type: 'LOAD_QUESTIN', payload: data.results})
     })
-  })
+  },[state.showResult])
   
   const nextQuestionOrReset = () => {
+    console.log(state.showResult)
     state.showResult ? dispatch({type:'RESET'}):dispatch({type:'NEXT_QUESTION'})
   }
   return (
@@ -26,7 +26,7 @@ function Quiz() {
           <h3>Done</h3> 
           <h2>Result {state.correctAnswerCount}/{state.questions.length}</h2>
          </>}
-        {!state.showResult && state.questions.length > 0 && <>
+        {!state.showResult && state.answers.length > 0 && <>
           <h1>Historical Quiz</h1>
           <h4>Count Question {state.currentQuestionIndex+1}/{state.questions.length}</h4>
           <Question/>
