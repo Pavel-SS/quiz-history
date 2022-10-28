@@ -27,7 +27,7 @@ const Quiz:React.FC = () => {
   const startTrivia = async() => {
     setLoading(true);
     setGameOver(false)
-    const newQuestions = await apiURL(TOTAL_QUESSTIONS, Difficulty.EASY)
+    const newQuestions = await apiURL(TOTAL_QUESSTIONS, Difficulty.MEDIUM)
     setQuestions(newQuestions);
     setScore(0);
     setUserAnswers([]);
@@ -70,7 +70,7 @@ const Quiz:React.FC = () => {
           Start
         </button> : null
         }
-        {!gameOver ? <p className='score'>Score:{score}</p> : null }
+        {!gameOver ? <p className='score'>Score: {score}</p> : null }
         {loading && <p>Loading...</p>}
         {!loading && !gameOver &&
         <QuestionCards question={questions[number].question} answers={questions[number].answers} callback={checkAnswer}
